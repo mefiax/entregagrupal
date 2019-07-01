@@ -13,17 +13,7 @@ var listaMatriculas;
 var listaUsuarios;
 const port = process.env.PORT || 3000;
 process.env.PORT = process.env.PORT || 3000;
-process.env.URLDB = 'mongodb://localhost:27017/nodedb'
-
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://mefiax:1nt3rn3t@cluster0-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
-client.connect(err => {
-    actualizarCursos();
-    actualizarMatriculas();
-    actualizarUsuarios();
-  client.close();
-});
+process.env.URLDB = 'mongodb+srv://admin:admin@nodejstdea-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority'
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
