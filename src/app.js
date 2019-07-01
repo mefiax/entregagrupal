@@ -11,8 +11,19 @@ const Matricula = require('./../modelos/matricula');
 var listaCursos;
 var listaMatriculas;
 var listaUsuarios;
+const port = process.env.PORT || 3000;
 process.env.PORT = process.env.PORT || 3000;
 process.env.URLDB = 'mongodb://localhost:27017/nodedb'
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://mefiax:1nt3rn3t@cluster0-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+    actualizarCursos();
+    actualizarMatriculas();
+    actualizarUsuarios();
+  client.close();
+});
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
@@ -589,7 +600,6 @@ app.get('*', (req, res) => {
 console.log(__dirname)
 
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log('Servidor en el puerto ' + port);
 })
