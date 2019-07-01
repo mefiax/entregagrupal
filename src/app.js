@@ -15,7 +15,14 @@ process.env.PORT = process.env.PORT || 3000;
 process.env.URLDB = 'mongodb://localhost:27017/nodedb'
 
 
-
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://mefiax:1nt3rn3t*/*@cluster0-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("nodedb").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
@@ -596,3 +603,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log('Servidor en el puerto ' + port);
 })
+
