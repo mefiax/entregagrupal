@@ -11,11 +11,13 @@ const Matricula = require('./../modelos/matricula');
 var listaCursos;
 var listaMatriculas;
 var listaUsuarios;
+process.env.PORT = process.env.PORT || 3000;
+process.env.URLDB = 'mongodb://localhost:27017/nodedb'
 
 
 
 
-mongoose.connect('mongodb://localhost:27017/nodedb', { useNewUrlParser: true }, (err) => {
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
         return console.log("Fallo la conexion con la BD" + (err));
     }
