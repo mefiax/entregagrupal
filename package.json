@@ -7,7 +7,7 @@
     "start": "node src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Juan David Fernandez Moreno",
+  "author": "Sin cert no hay nombre",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -20,10 +20,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/judfernandezmo/Entrega2NodeJS.git"
+    "url": "git+https://github.com/mefiax/entregagrupal2.git"
   },
   "bugs": {
-    "url": "https://github.com/judfernandezmo/Entrega2NodeJS/issues"
+    "url": "https://github.com/mefiax/entregagrupal2/issues"
   },
-  "homepage": "https://github.com/judfernandezmo/Entrega2NodeJS#readme"
+  "homepage": "https://github.com/mefiax/entregagrupal2#readme"
 }
