@@ -1,0 +1,19 @@
+{{>header}}
+<div class="container text-center" style="border-width: 1px;border: solid; border-color: black">
+    <h1>{{texto}}</h1>
+    <form action="/index" method="post">
+        <p>Cedula:</p>
+        <input type="number" name="cedula" required>
+        <br>
+        <p>Password:</p>
+        <input type="password" name="password" required>
+        <br>
+        <br>
+        <button class="btn btn-dark">LOG IN</button>
+        <br>
+    </form>
+    <br>
+</div>
+<br>
+
+{{>footer}}

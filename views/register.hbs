@@ -1,0 +1,27 @@
+{{>header}}
+<div class="container text-center" style="border-width: 1px;border: solid; border-color: black">
+    <form action="/registrado" method="post">
+        <p>Nombre:</p>
+        <input type="text" name="nombre" required>
+        <br>
+        <p>Cedula:</p>
+        <input type="number" name="cedula" required>
+        <br>
+        <p>Contraseña:</p>
+        <input type="password" name="password" required>
+        <br>
+        <p>Correo:</p>
+        <input type="text" name="correo" required>
+        <br>
+        <p>Telefono:</p>
+        <input type="number" name="telefono" required>
+        <br>
+        <br>
+        <button class="btn btn-dark">REGISTER</button>
+        <br>
+    </form>
+    <br>
+</div>
+<br>
+
+{{>footer}}

@@ -1,0 +1,29 @@
+{
+  "name": "servidor",
+  "version": "1.0.1",
+  "description": "Servidor creado en NodeJS curso TdeA",
+  "main": "app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan David Fernandez Moreno",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
+    "express": "^4.16.4",
+    "hbs": "^4.0.4",
+    "jquery": "^3.4.1",
+    "mongoose": "^5.5.1",
+    "popper.js": "^1.14.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/judfernandezmo/Entrega2NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/judfernandezmo/Entrega2NodeJS/issues"
+  },
+  "homepage": "https://github.com/judfernandezmo/Entrega2NodeJS#readme"
+}

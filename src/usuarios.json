@@ -1,0 +1,30 @@
+[
+    {
+        "cedula": 1152454980,
+        "nombre": "Admin",
+        "correo": "eladmin@potomail.com",
+        "telefono": "5849240",
+        "tipo": "coordinador"
+    },
+    {
+        "cedula": 111,
+        "nombre": "ana",
+        "correo": "as",
+        "telefono": 1,
+        "tipo": "aspirante"
+    },
+    {
+        "cedula": 123,
+        "nombre": "gordoforro",
+        "correo": "s",
+        "telefono": 1,
+        "tipo": "aspirante"
+    },
+    {
+        "cedula": 211,
+        "nombre": "a",
+        "correo": "a",
+        "telefono": 1,
+        "tipo": "aspirante"
+    }
+]

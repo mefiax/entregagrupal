@@ -1,0 +1,36 @@
+{{>header}}
+<div class="container text-center" style="border-width: 1px;border: solid; border-color: black">
+    <h2>Actualizar informacion de usuario</h2>
+    <p>ingrese la informacion del usuario a actualizar</p>
+    <br>
+    <h2>{{texto}}</h2>
+    <br>
+    <form action="/actualizardatos" method="post">
+        <p>Nombre:</p>
+        <input type="text" name="nombre" required>
+        <br>
+        <p>Cedula:</p>
+        <input type="number" name="cedula" required>
+        <br>
+        <p>Correo:</p>
+        <input type="text" name="correo" required>
+        <br>
+        <p>Telefono:</p>
+        <input type="number" name="telefono" required>
+        <br>
+        <p>Rol del usuario:</p>
+        <div class="radio">
+            <label><input type="radio" name="tipo" value="aspirante" checked>Aspirante</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="tipo" value="docente">Docente</label>
+        </div>
+        <br>
+        <br>
+        <button class="btn btn-dark">ACTUALIZAR</button>
+        <br>
+    </form>
+    <br>
+</div>
+<br>
+{{>footer}}

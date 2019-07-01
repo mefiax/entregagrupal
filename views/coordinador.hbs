@@ -1,0 +1,39 @@
+{{>header}}
+
+<div class="container text-center" style="border-width: 1px;border: solid; border-color: black">
+    <h1>
+        Registro de cursos
+    </h1>
+    <h2>
+        Ingrese los datos
+    </h2>
+    <h2>
+        {{texto}}
+    </h2>
+    <form action="/cursoregistrado" method="post">
+        <p>Nombre del curso:</p>
+        <input type="text" name="nombre_curso" required>
+        <br>
+        <p>Id del curso:</p>
+        <input type="number" name="id" required>
+        <br>
+        <p>Descripcion:</p>
+        <input type="text" name="descripcion" required>
+        <br>
+        <p>Valor:</p>
+        <input type="number" name="valor" required>
+        <br>
+        <p>Modalidad:</p>
+        <input type="text" name="modalidad" value = '-'>
+        <br>
+        <p>Intensidad horaria:</p>
+        <input type="text" name="intensidad" value = 0>
+        <br>
+        <br>
+        <button class="btn btn-dark">REGISTRAR</button>
+        <br>
+    </form>
+    <br>
+</div> 
+
+{{>footer}}

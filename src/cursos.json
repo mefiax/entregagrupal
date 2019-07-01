@@ -1,0 +1,38 @@
+[
+    {
+        "nombre_curso": "Matematicas",
+        "id": "01",
+        "descripcion": "este curso es un parche",
+        "valor": "100",
+        "modalidad": "presencial",
+        "intensidad": "32",
+        "estado": "disponible"
+    },
+    {
+        "nombre_curso": "Algebra",
+        "id": "02",
+        "descripcion": "este curso es un parche",
+        "valor": "100",
+        "modalidad": "presencial",
+        "intensidad": "32",
+        "estado": "cerrado"
+    },
+    {
+        "nombre_curso": "Ingles",
+        "id": "03",
+        "descripcion": "este curso es un parche",
+        "valor": "100",
+        "modalidad": "presencial",
+        "intensidad": "32",
+        "estado": "disponible"
+    },
+    {
+        "nombre_curso": "Programacion",
+        "id": "04",
+        "descripcion": "efjo",
+        "valor": 5500,
+        "modalidad": "No especificada",
+        "intensidad": "No especificada",
+        "estado": "disponible"
+    }
+]
