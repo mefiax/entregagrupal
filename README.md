@@ -8,9 +8,9 @@
 
 ## Grupo: Sin certificado no hay nombre
 ### Autores:
--Juan David Ferenandez Moreno
--Mirai Alejandro Kaneko
--Andres Mejia Echeverri
+- Juan David Ferenandez Moreno
+- Mirai Alejandro Kaneko
+- Andres Mejia Echeverri
  
 ## Para ejecutar en heroku:
 1. Abra el link de Heroku de la parte superior
@@ -18,9 +18,8 @@
 3. Para ingresar como coordinador debe ingresar los datos:
  
 ### Datos:
-
-Cedula: 123
-Password: password
+- Cedula: 123
+- Password: password
 
 ## Para ejecutar de manera local:
 1. Descargue y descomprima el proyecto
@@ -30,7 +29,6 @@ Password: password
 5. Abra en el navegador 'localhost:3000'
 
 ### Datos:
-
-Los datos para ingresar como coordinador son los siguientes:
-Cedula: 123
-Password: password
+#### Los datos para ingresar como coordinador son los siguientes:
+- Cedula: 123
+- Password: password
