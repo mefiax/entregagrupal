@@ -1,9 +1,9 @@
 #Entrega 3 NodeJS con el TdeA
-Grupo: Praise the sun
+Grupo: Sin certificado no hay nombre
 Autores:
 -Juan David Ferenandez Moreno
 -Mirai Alejandro Kaneko
--Santiago Quintero Valencia
+-Juan David Fernández Moreno
 
 Para ejecutar:
 1. Descargue y descomprima el proyecto
