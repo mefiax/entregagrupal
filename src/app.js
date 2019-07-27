@@ -341,6 +341,20 @@ app.get('/coordinador4', (req, res) => {
     res.render('coordinador4');
 })
 
+app.post('/updateuser', (req, res) => {
+    Usuario.findOne({ cedula: parseInt(req.query.cedula) }).exec((err, respuesta) => {
+        if (err) {
+            return console.log(err);
+        }
+        else {
+            res.render('updateuser', {
+                user: respuesta
+            });
+        }
+    })
+});
+
+
 app.post('/actualizardatos', (req, res) => {
 
     Usuario.findOne({ cedula: parseInt(req.body.cedula) }).exec((err, response) => {
@@ -383,6 +397,36 @@ app.post('/actualizardatos', (req, res) => {
         telefono: parseInt(req.body.telefono),
         tipo: req.body.tipo
     }); */
+})
+
+app.post('/actualizardatos2', (req, res) => {
+
+    Usuario.findOne({ cedula: parseInt(req.query.cedula) }).exec((err, response) => {
+        if (err) {
+            return console.log(err);
+        }
+        else {
+            if (response) {
+                Usuario.updateOne({ cedula: parseInt(req.query.cedula) }, {
+                    $set: {
+                        nombre: req.body.nombre,
+                        correo: req.body.correo,
+                        telefono: parseInt(req.body.telefono),
+                        password: req.body.password
+                    }
+                }).exec((err, response) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    else {
+                        res.render('actualizardatos2', {
+                            texto: 'Se han actualizado los datos.'
+                        })
+                    }
+                })
+            }
+        }
+    })
 })
 
 app.post('/cerrado', (req, res) => {
@@ -433,7 +477,7 @@ app.post('/docenteasignado', (req, res) => {
                                 console.log(msg1);
                                 sgMail.send(msg1);
                                 var cursocerrado = respuesta.nombre_curso;
-                                io.emit('cursocerrado',cursocerrado);
+                                io.emit('cursocerrado', cursocerrado);
                                 res.render('docenteasignado', {
                                     texto: ('El docente ' + response.nombre + ' ha sido asignado.')
                                 })

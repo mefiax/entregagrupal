@@ -38,7 +38,7 @@ hbs.registerHelper('actualizar', (cedula, nombre, correo, telefono, tipo) => {
 });
 
 hbs.registerHelper('desmatricular', (curso, cedulaMatriculados, usuarios) => {
-    
+
     let texto;
     console.log(cedulaMatriculados)
     console.log(usuarios)
@@ -239,7 +239,7 @@ hbs.registerHelper('listar2', (cursosD, matriculasD) => {
     return texto;
 });
 
-hbs.registerHelper('listar', (usuario, listaCursos,listaMatriculas,listaUsuarios) => {
+hbs.registerHelper('listar', (usuario, listaCursos, listaMatriculas, listaUsuarios) => {
 
     let texto;
 
@@ -275,8 +275,8 @@ hbs.registerHelper('listar', (usuario, listaCursos,listaMatriculas,listaUsuarios
             "<form action='/coordinador2' method='get'><button class='btn btn-dark'>CERRAR CURSO</button></form><br>" +
             "<form action='/coordinador3' method='get'><button class='btn btn-dark'>DESMATRICULAR ESTUDIANTE</button></form><br>" +
             "<form action='/coordinador4' method='get'><button class='btn btn-dark'>MODIFICAR USUARIOS</button></form><br></div><br></div>");
-    } 
-    else if(usuario.tipo == 'docente'){
+    }
+    else if (usuario.tipo == 'docente') {
         texto = "<div class='table-responsive'> <table class='table table-hover'>\
                 <thead class='thead-dark text-center'>\
                 <th>ID:</th>\
@@ -305,11 +305,11 @@ hbs.registerHelper('listar', (usuario, listaCursos,listaMatriculas,listaUsuarios
                     '<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">' +
                     '<div class="card-body">')
 
-                    listaMatriculas.filter(ver=>ver.id==cursos.id).forEach(ma=>{
-                        texto=(texto + "Nombre: " + listaUsuarios.find(v => v.cedula == ma.cedula).nombre + "<br>Correo: " + listaUsuarios.find(v => v.cedula == ma.cedula).correo + "<br><br>")
-                    })
+                listaMatriculas.filter(ver => ver.id == cursos.id).forEach(ma => {
+                    texto = (texto + "Nombre: " + listaUsuarios.find(v => v.cedula == ma.cedula).nombre + "<br>Correo: " + listaUsuarios.find(v => v.cedula == ma.cedula).correo + "<br><br>")
+                })
 
-                   texto =( texto + '</div></div></div></div></td>' +
+                texto = (texto + '</div></div></div></div></td>' +
                     '</tr>');
             }
         })
@@ -351,7 +351,10 @@ hbs.registerHelper('listar', (usuario, listaCursos,listaMatriculas,listaUsuarios
                     '</tr>');
             }
         })
-        texto = (texto + "</tbody></table><form action='/aspirante?cedula=" + usuario.cedula + "' method='post'><button class='btn btn-dark'>DARME DE BAJA EN UN CURSO</button></form><br></div>");
+        texto = (texto +
+            "</tbody></table><form action='/aspirante?cedula=" +
+            usuario.cedula + "' method='post'><button class='btn btn-dark'>DARME DE BAJA EN UN CURSO</button></form><br>" +
+            '<form action="/updateuser?cedula=' + usuario.cedula + ' " method="post"><button class="btn btn-dark">MODIFICAR MI INFORMACION</button></form><br></div>');
 
     }
     return texto;
