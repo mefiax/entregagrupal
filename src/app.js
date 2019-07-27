@@ -18,7 +18,7 @@ var listaUsuarios;
 const port = process.env.PORT || 3000;
 process.env.PORT = process.env.PORT || 3000;
 process.env.URLDB = 'mongodb+srv://admin:admin@nodejstdea-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority'
-process.env.SENDGRID_API_KEY='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'
+process.env.SENDGRID_API_KEY = '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'
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
@@ -47,7 +47,7 @@ function actualizarUsuarios() {
                     telefono: 2222222,
                     tipo: 'coordinador'
                 })
-                usuario.save((err, res)=> {
+                usuario.save((err, res) => {
                     if (err) {
                         return console.log(err);
                     }
@@ -57,13 +57,13 @@ function actualizarUsuarios() {
                     }
                 })
             }
-            else{
+            else {
                 listaUsuarios = res;
                 console.log('se obtuvieron los usuarios');
                 console.log(listaUsuarios.length);
             }
-            
-            
+
+
         }
     })
 }
@@ -107,16 +107,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'hbs');
 
-io.on('connection',client =>{
+io.on('connection', client => {
     console.log('User connected')
-    client.on('texto',(texto,callback)=>{
+    client.on('texto', (texto, callback) => {
         console.log(texto);
-        io.emit('chat',texto)
+        io.emit('chat', texto)
         callback()
     })
 
 });
-
 
 app.post('/inscrito', (req, res) => {
 
@@ -417,9 +416,31 @@ app.post('/docenteasignado', (req, res) => {
                         return console.log(err)
                     }
                     else {
-                        res.render('docenteasignado', {
-                            texto: ('El docente ' + response.nombre + ' ha sido asignado.')
+
+                        Curso.findOne({ id: req.query.id }).exec((err, respuesta) => {
+                            if (err) {
+                                console.log(err)
+                            }
+                            else {
+                                console.log(respuesta);
+                                var textcorreo = "Se ha cerrado el curso " + respuesta.nombre_curso + ".";
+                                const msg1 = {
+                                    to: response.correo,
+                                    from: 'sincertononombre@info.com',
+                                    subject: 'Curso cerrado',
+                                    text: textcorreo
+                                };
+                                console.log(msg1);
+                                sgMail.send(msg1);
+                                var cursocerrado = respuesta.nombre_curso;
+                                io.emit('cursocerrado',cursocerrado);
+                                res.render('docenteasignado', {
+                                    texto: ('El docente ' + response.nombre + ' ha sido asignado.')
+                                })
+                            }
+
                         })
+
                     }
                 })
 
@@ -520,7 +541,10 @@ app.post('/index', (req, res) => {
                                     console.log(resM)
                                     console.log(listaCursos)
                                     console.log(resU)
-                                    avatar = response.avatar.toString('base64')
+                                    avatar = undefined;
+                                    if (response.avatar) {
+                                        avatar = response.avatar.toString('base64')
+                                    }
                                     res.render('index', {
                                         nombre: response.nombre,
                                         usuario: response,
@@ -556,7 +580,7 @@ app.get('/login', (req, res) => {
     res.render('login')
 })
 var upload = multer({});
-app.post('/registrado', upload.single('avatar'),(req, resRender) => {
+app.post('/registrado', upload.single('avatar'), (req, resRender) => {
     console.log(req.file.buffer)
     let usuario;
     Usuario.findOne({ cedula: parseInt(req.body.cedula) }).exec((err, res) => {
@@ -604,8 +628,8 @@ app.get('/register', (req, res) => {
     res.render("register")
 })
 
-app.get('/dropped',(req,res)=>{
-    
+app.get('/dropped', (req, res) => {
+
     res.render('dropped')
 })
 
@@ -613,7 +637,7 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/chat',(req,res)=>{
+app.get('/chat', (req, res) => {
     res.render('chat')
 })
 

@@ -43,6 +43,10 @@
         texto.focus();
     })
 
+    socket.on('cursocerrado',(mensaje)=>{
+        alert('Se ha cerrado el curso ' + mensaje + '.')
+    })
+
     socket.on('chat',(text)=>{
         chat.innerHTML = chat.innerHTML + text.username+ ': ' + text.texto + '\n';
     })
