@@ -3,7 +3,7 @@ Grupo: Sin certificado no hay nombre
 Autores:
 -Juan David Ferenandez Moreno
 -Mirai Alejandro Kaneko
--Juan David Fernández Moreno
+-Andrés Mejia Echeverri 
 
 Para ejecutar:
 1. Descargue y descomprima el proyecto
