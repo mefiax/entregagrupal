@@ -1,6 +1,6 @@
 {{>header}}
 <div class="container text-center" style="border-width: 1px;border: solid; border-color: black">
-    <form action="/registrado" method="post">
+    <form action="/registrado" method="post" enctype="multipart/form-data">
         <p>Nombre:</p>
         <input type="text" name="nombre" required>
         <br>
@@ -11,10 +11,13 @@
         <input type="password" name="password" required>
         <br>
         <p>Correo:</p>
-        <input type="text" name="correo" required>
+        <input type="email" name="correo" required>
         <br>
         <p>Telefono:</p>
         <input type="number" name="telefono" required>
+        <br>
+        <p>Avatar:</p>
+        <input type="file" name="avatar" accept="image/png" required>
         <br>
         <br>
         <button class="btn btn-dark">REGISTER</button>
@@ -24,4 +27,4 @@
 </div>
 <br>
 
-{{>footer}}
+{{>footerhome}}

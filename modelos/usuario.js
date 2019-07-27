@@ -16,7 +16,8 @@ const usuarioSchema = new Schema({
     },
     correo: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     telefono: {
         type: Number,
@@ -25,6 +26,9 @@ const usuarioSchema = new Schema({
     tipo: {
         type: String,
         default: "aspirante"
+    },
+    avatar: {
+        type: Buffer
     }
 });
 

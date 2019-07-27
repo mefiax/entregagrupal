@@ -1,4 +1,5 @@
 const express = require('express');
+const sgMail = require('@sendgrid/mail');
 const app = express();
 const path = require('path');
 const hbs = require('hbs');
@@ -8,13 +9,17 @@ const mongoose = require('mongoose');
 const Usuario = require('./../modelos/usuario');
 const Curso = require('./../modelos/curso');
 const Matricula = require('./../modelos/matricula');
+const multer = require('multer');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 var listaCursos;
 var listaMatriculas;
 var listaUsuarios;
 const port = process.env.PORT || 3000;
 process.env.PORT = process.env.PORT || 3000;
 process.env.URLDB = 'mongodb+srv://admin:admin@nodejstdea-bmwcd.mongodb.net/nodedb?retryWrites=true&w=majority'
-
+process.env.SENDGRID_API_KEY='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'
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true }, (err) => {
     if (err) {
         return console.log("Fallo la conexion con la BD" + (err));
@@ -101,6 +106,17 @@ hbs.registerPartials(directoriopartials);
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'hbs');
+
+io.on('connection',client =>{
+    console.log('User connected')
+    client.on('texto',(texto,callback)=>{
+        console.log(texto);
+        io.emit('chat',texto)
+        callback()
+    })
+
+});
+
 
 app.post('/inscrito', (req, res) => {
 
@@ -504,12 +520,14 @@ app.post('/index', (req, res) => {
                                     console.log(resM)
                                     console.log(listaCursos)
                                     console.log(resU)
+                                    avatar = response.avatar.toString('base64')
                                     res.render('index', {
                                         nombre: response.nombre,
                                         usuario: response,
                                         listaCursos: listaCursos,
                                         listaMatriculas: resM,
-                                        listaUsuarios: resU
+                                        listaUsuarios: resU,
+                                        avatar: avatar
                                     })
                                 }
                                 else {
@@ -537,9 +555,9 @@ app.post('/index', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login')
 })
-
-app.post('/registrado', (req, resRender) => {
-
+var upload = multer({});
+app.post('/registrado', upload.single('avatar'),(req, resRender) => {
+    console.log(req.file.buffer)
     let usuario;
     Usuario.findOne({ cedula: parseInt(req.body.cedula) }).exec((err, res) => {
         if (err) {
@@ -558,14 +576,22 @@ app.post('/registrado', (req, resRender) => {
                     password: req.body.password,
                     correo: req.body.correo,
                     telefono: parseInt(req.body.telefono),
-                    tipo: 'aspirante'
+                    tipo: 'aspirante',
+                    avatar: req.file.buffer
                 })
+                const msg = {
+                    to: req.body.correo,
+                    from: 'sincertononombre@bienvenido.com',
+                    subject: 'Bienvenido',
+                    text: 'Se ha registrado exitosamente.'
+                };
                 usuario.save((err, res) => {
                     if (err) {
                         return console.log(err);
                     }
                     else {
                         console.log(res);
+                        sgMail.send(msg);
                         resRender.render('login');
                     }
                 })
@@ -578,10 +604,18 @@ app.get('/register', (req, res) => {
     res.render("register")
 })
 
+app.get('/dropped',(req,res)=>{
+    
+    res.render('dropped')
+})
+
 app.get('/', (req, res) => {
     res.render('home')
 })
 
+app.get('/chat',(req,res)=>{
+    res.render('chat')
+})
 
 app.get('*', (req, res) => {
     res.render('error');
@@ -590,7 +624,7 @@ app.get('*', (req, res) => {
 console.log(__dirname)
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Servidor en el puerto ' + port);
 })
 
